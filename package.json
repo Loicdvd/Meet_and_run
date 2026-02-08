@@ -1,0 +1,21 @@
+{
+  "name": "meet-and-run",
+  "version": "0.1.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-community/datetimepicker": "8.0.1",
+    "expo": "~50.0.20",
+    "expo-location": "~16.5.5",
+    "react": "18.2.0",
+    "react-native": "0.73.7",
+    "react-native-maps": "1.10.0"
+  }
+}

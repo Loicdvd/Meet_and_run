@@ -1,5 +1,5 @@
 {
-  "name": "meet-and-run",
+  "name": "run-planner",
   "version": "0.1.0",
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
@@ -10,12 +10,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "1.23.1",
-    "@react-native-community/datetimepicker": "8.0.1",
-    "expo": "~50.0.20",
-    "expo-location": "~16.5.5",
-    "react": "18.2.0",
-    "react-native": "0.73.7",
-    "react-native-maps": "1.10.0"
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-community/datetimepicker": "8.4.4",
+    "@supabase/supabase-js": "^2.57.4",
+    "expo": "~54.0.33",
+    "expo-location": "~19.0.8",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-maps": "1.20.1",
+    "react-native-url-polyfill": "^2.0.0"
   }
 }

@@ -52,22 +52,22 @@ create table if not exists public.run_participants (
 alter table public.run_plans enable row level security;
 alter table public.run_participants enable row level security;
 
-create policy \"read runs\" on public.run_plans
+create policy "read runs" on public.run_plans
 for select to authenticated using (true);
 
-create policy \"insert own runs\" on public.run_plans
+create policy "insert own runs" on public.run_plans
 for insert to authenticated with check (auth.uid() = owner_id);
 
-create policy \"delete own runs\" on public.run_plans
+create policy "delete own runs" on public.run_plans
 for delete to authenticated using (auth.uid() = owner_id);
 
-create policy \"read participants\" on public.run_participants
+create policy "read participants" on public.run_participants
 for select to authenticated using (true);
 
-create policy \"join as self\" on public.run_participants
+create policy "join as self" on public.run_participants
 for insert to authenticated with check (auth.uid() = user_id);
 
-create policy \"leave as self\" on public.run_participants
+create policy "leave as self" on public.run_participants
 for delete to authenticated using (auth.uid() = user_id);
 ```
 3. In Supabase `Project Settings -> API`, copy:

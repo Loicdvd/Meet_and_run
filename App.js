@@ -164,6 +164,7 @@ export default function App() {
   const [title, setTitle] = useState('');
   const [dateTime, setDateTime] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
+  const [pickerMode, setPickerMode] = useState('date');
   const [plans, setPlans] = useState([]);
   const [plansError, setPlansError] = useState('');
   const [plansLoading, setPlansLoading] = useState(false);
@@ -447,12 +448,33 @@ export default function App() {
   };
 
   const onDateChange = (_event, selected) => {
-    if (Platform.OS === 'android') {
+    if (Platform.OS === 'ios') {
+      if (selected) {
+        setDateTime(selected);
+      }
+      return;
+    }
+
+    // Android flow: open date first, then time.
+    if (!selected) {
       setShowPicker(false);
+      return;
     }
-    if (selected) {
-      setDateTime(selected);
+
+    if (pickerMode === 'date') {
+      const next = new Date(dateTime);
+      next.setFullYear(selected.getFullYear(), selected.getMonth(), selected.getDate());
+      setDateTime(next);
+      setPickerMode('time');
+      setShowPicker(true);
+      return;
     }
+
+    const next = new Date(dateTime);
+    next.setHours(selected.getHours(), selected.getMinutes(), 0, 0);
+    setDateTime(next);
+    setShowPicker(false);
+    setPickerMode('date');
   };
 
   const submitAuth = async () => {
@@ -581,7 +603,15 @@ export default function App() {
         />
 
         <View style={styles.primaryActions}>
-          <Pressable style={styles.primaryButton} onPress={() => setShowPicker(true)}>
+          <Pressable
+            style={styles.primaryButton}
+            onPress={() => {
+              if (Platform.OS === 'android') {
+                setPickerMode('date');
+              }
+              setShowPicker(true);
+            }}
+          >
             <Text style={styles.primaryButtonText}>Set Date & Time</Text>
           </Pressable>
 
@@ -597,7 +627,11 @@ export default function App() {
         <Text style={styles.meta}>{dateTime.toLocaleString()}</Text>
 
         {showPicker && (
-          <DateTimePicker value={dateTime} mode="datetime" onChange={onDateChange} />
+          <DateTimePicker
+            value={dateTime}
+            mode={Platform.OS === 'ios' ? 'datetime' : pickerMode}
+            onChange={onDateChange}
+          />
         )}
 
         <View style={styles.secondaryActions}>

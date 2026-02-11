@@ -1,16 +1,29 @@
 {
   "expo": {
-    "name": "Run Planner",
-    "slug": "run-planner",
+    "name": "StrideLoop",
+    "slug": "strideloop",
     "version": "0.1.0",
     "orientation": "portrait",
+    "icon": "./assets/brand/icon.png",
     "userInterfaceStyle": "light",
     "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/brand/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4FBFF"
+    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "package": "com.example.runplanner"
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/brand/adaptive-icon.png",
+        "backgroundColor": "#F4FBFF"
+      },
+      "package": "com.example.strideloop"
+    },
+    "web": {
+      "favicon": "./assets/brand/favicon.png"
     }
   }
 }
